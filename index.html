@@ -8,187 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#FBFAF6;
-  --graphite:#23262B;
-  --graphite-soft:#5C6169;
-  --pencil:#E4A72E;
-  --ink:#35506E;
-  --rule:#E4DFD3;
-  --margin-line:#D9A69D;
-  --correct:#2E7350;
-  --wrong:#B0432A;
-
-  --display:"Fraunces",Georgia,serif;
-  --body:"Karla",system-ui,-apple-system,sans-serif;
-
-  --col:1080px;
-  --read:64ch;
-}
-
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--graphite);
-  font-family:var(--body);
-  font-size:18px;
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{color:var(--graphite)}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
-
-.wrap{max-width:var(--col);margin:0 auto;padding:0 28px}
-
-/* the notebook margin rule the site is named after */
-.ruled{position:relative}
-.ruled::before{
-  content:"";
-  position:absolute;
-  top:0;bottom:0;left:0;
-  width:1px;
-  background:var(--margin-line);
-}
-@media (max-width:860px){ .ruled::before{display:none} }
-
-h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;margin:0;letter-spacing:-0.015em}
-h1{font-size:clamp(2.3rem,5.4vw,3.9rem)}
-h2{font-size:clamp(1.6rem,3vw,2.2rem)}
-h3{font-size:1.18rem;font-weight:600}
-p{margin:0 0 1.1em}
-
-/* ---------- header ---------- */
-.masthead{border-bottom:1px solid var(--rule);background:var(--paper)}
-.masthead-inner{display:flex;align-items:baseline;gap:32px;padding:22px 28px;max-width:var(--col);margin:0 auto;flex-wrap:wrap}
-.wordmark{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;text-decoration:none;color:var(--graphite);white-space:nowrap}
-.wordmark span{color:var(--pencil)}
-.tagline{font-size:.86rem;color:var(--graphite-soft);margin-right:auto}
-.nav{display:flex;gap:22px;flex-wrap:wrap}
-.nav a{font-size:.92rem;font-weight:500;color:var(--graphite);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent}
-.nav a:hover{border-bottom-color:var(--pencil)}
-@media (max-width:700px){
-  .tagline{width:100%;margin:0 0 4px}
-  .nav{gap:16px}
-}
-
-/* ---------- hero ---------- */
-.hero{padding:76px 0 68px}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start}
-.hero-copy{max-width:none;padding-left:26px}
-.hero-copy p{color:var(--graphite-soft);max-width:38ch;font-size:1.06rem}
-.hero h1{margin-bottom:20px}
-.hero-cta{display:inline-block;margin-top:8px;background:var(--graphite);color:var(--paper);font-weight:600;font-size:.98rem;padding:13px 26px;border-radius:2px;text-decoration:none}
-.hero-cta:hover{background:var(--ink);color:var(--paper)}
-@media (max-width:860px){
-  .hero{padding:48px 0 44px}
-  .hero-grid{grid-template-columns:1fr;gap:38px}
-  .hero-copy{padding-left:0}
-}
-
-/* ---------- live question widget ---------- */
-.q{border:1px solid var(--graphite);background:#fff;padding:26px 26px 22px}
-.q-kicker{font-size:.78rem;font-weight:700;color:var(--graphite-soft);margin-bottom:14px;display:flex;justify-content:space-between;gap:12px}
-.q-kicker em{font-style:normal;color:var(--pencil)}
-.q-text{font-size:1rem;line-height:1.6;margin-bottom:18px}
-.q-text b{font-weight:700;background:linear-gradient(transparent 62%,rgba(228,167,46,.45) 62%)}
-.q-ask{font-size:.94rem;font-weight:600;margin-bottom:14px}
-.q-opts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.q-opt{
-  width:100%;text-align:left;font:inherit;font-size:.96rem;
-  background:var(--paper);border:1px solid var(--rule);
-  padding:11px 14px;cursor:pointer;display:flex;gap:12px;align-items:baseline;
-  border-radius:2px;
-}
-.q-opt:hover:not(:disabled){border-color:var(--graphite)}
-.q-opt:disabled{cursor:default}
-.q-letter{font-weight:700;color:var(--graphite-soft);min-width:1.1em}
-.q-opt.is-correct{border-color:var(--correct);background:rgba(46,115,80,.09)}
-.q-opt.is-correct .q-letter{color:var(--correct)}
-.q-opt.is-wrong{border-color:var(--wrong);background:rgba(176,67,42,.08)}
-.q-opt.is-wrong .q-letter{color:var(--wrong)}
-
-.q-reveal{
-  margin-top:18px;padding-top:18px;border-top:1px dashed var(--rule);
-  display:none;
-}
-.q-reveal.open{display:block;animation:unfold .32s ease-out}
-@keyframes unfold{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.q-verdict{font-family:var(--display);font-size:1.1rem;font-weight:600;margin-bottom:8px}
-.q-reveal p{font-size:.94rem;color:var(--graphite-soft);margin-bottom:.8em}
-.q-reveal p:last-child{margin-bottom:0}
-.q-reveal strong{color:var(--graphite)}
-@media (prefers-reduced-motion:reduce){
-  .q-reveal.open{animation:none}
-  *{transition:none!important}
-}
-
-/* ---------- sections ---------- */
-.band{border-top:1px solid var(--rule);padding:64px 0}
-.band-head{padding-left:26px;margin-bottom:36px;max-width:var(--read)}
-.band-head h2{margin-bottom:10px}
-.band-head p{color:var(--graphite-soft);font-size:1rem;margin:0}
-@media (max-width:860px){ .band-head{padding-left:0} .band{padding:46px 0} }
-
-/* start here: a genuine sequence, so it's numbered */
-.path{list-style:none;margin:0;padding:0 0 0 26px;max-width:var(--read)}
-.path li{display:grid;grid-template-columns:2.4rem 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--rule)}
-.path li:first-child{border-top:none;padding-top:0}
-.path-num{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--pencil);line-height:1.1}
-.path h3{margin-bottom:5px}
-.path p{font-size:.96rem;color:var(--graphite-soft);margin:0}
-@media (max-width:860px){ .path{padding-left:0} }
-
-/* posts */
-.posts{list-style:none;margin:0;padding:0 0 0 26px;max-width:var(--read)}
-.posts li{padding:18px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:6.5rem 1fr;gap:20px;align-items:baseline}
-.post-meta{font-size:.8rem;color:var(--graphite-soft);font-weight:500}
-.post-title{font-family:var(--display);font-size:1.22rem;font-weight:600;text-decoration:none;color:var(--graphite);display:block;line-height:1.25}
-.post-title:hover{color:var(--ink)}
-.post-dek{font-size:.93rem;color:var(--graphite-soft);margin:5px 0 0}
-@media (max-width:640px){
-  .posts{padding-left:0}
-  .posts li{grid-template-columns:1fr;gap:6px}
-}
-
-/* about */
-.about{background:var(--graphite);color:var(--paper);padding:62px 0}
-.about .wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start}
-.about h2{color:var(--paper)}
-.about p{color:#CFCCC5;font-size:1rem}
-.about p:last-child{margin-bottom:0}
-.about a{color:var(--pencil)}
-.score{font-family:var(--display);font-size:3.4rem;font-weight:700;line-height:1;color:var(--pencil)}
-.score-note{font-size:.85rem;color:#A9A69F;margin-top:6px}
-@media (max-width:860px){ .about .wrap{grid-template-columns:1fr;gap:24px} }
-
-/* signup */
-.signup{padding:58px 0;border-top:1px solid var(--rule)}
-.signup-inner{padding-left:26px;max-width:var(--read)}
-.signup h2{margin-bottom:8px}
-.signup p{color:var(--graphite-soft);font-size:1rem}
-.form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.form input{
-  flex:1 1 240px;font:inherit;font-size:1rem;padding:12px 14px;
-  border:1px solid var(--graphite);background:#fff;color:var(--graphite);border-radius:2px;
-}
-.form input::placeholder{color:#9A9691}
-.form button{
-  font:inherit;font-weight:600;font-size:1rem;padding:12px 24px;cursor:pointer;
-  background:var(--pencil);color:var(--graphite);border:1px solid var(--graphite);border-radius:2px;
-}
-.form button:hover{background:var(--graphite);color:var(--paper)}
-.form-note{font-size:.84rem;color:var(--graphite-soft);margin:12px 0 0}
-@media (max-width:860px){ .signup-inner{padding-left:0} }
-
-/* footer */
-footer{border-top:1px solid var(--rule);padding:30px 0 46px;font-size:.86rem;color:var(--graphite-soft)}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-footer a{color:var(--graphite-soft)}
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -197,12 +17,10 @@ footer a{color:var(--graphite-soft)}
     <a class="wordmark" href="/">SAT Lobby<span>.</span></a>
     <span class="tagline">SAT strategy, worked out in the open</span>
     <nav class="nav" aria-label="Main">
-      <a href="/start">Start Here</a>
-      <a href="/reading-writing">Reading &amp; Writing</a>
-      <a href="/math">Math</a>
-      <a href="/mindset">Mindset</a>
-      <a href="/quizzes">Quizzes</a>
-      <a href="/about">About</a>
+      <a href="#start">Start Here</a>
+      <a href="#latest">Latest</a>
+      <a href="#about">About</a>
+      <a href="#subscribe">Subscribe</a>
     </nav>
   </div>
 </header>
@@ -215,10 +33,9 @@ footer a{color:var(--graphite-soft)}
         <div class="hero-copy">
           <h1>You don't need more practice tests. You need a way to think.</h1>
           <p>I'm breaking down how I actually reasoned through the SAT — question by question, habit by habit. Not answers. Methods.</p>
-          <a class="hero-cta" href="/start">Start with the basics</a>
+          <a class="hero-cta" href="#start">Start with the basics</a>
         </div>
 
-        <!-- live question -->
         <div class="q" id="hero-question">
           <div class="q-kicker">
             <span>Words in Context</span>
@@ -236,14 +53,14 @@ footer a{color:var(--graphite-soft)}
             <p class="q-verdict" id="q-verdict"></p>
             <p>The sentence sets up an escalation: <strong>not merely refine … but ______</strong>. So the blank has to be something bigger than refining.</p>
             <p>Then the second half restates it for you — physicists were <strong>forced to accept</strong> something entirely new. That's the context clue. <em>Upended</em> is the only choice stronger than "refine." <em>Supplemented</em> and <em>echoed</em> are weaker, and <em>predicted</em> changes the meaning altogether.</p>
-            <p><a href="/reading-writing/words-in-context">Read the full method →</a></p>
+            <p><a href="/soon.html">Read the full method</a></p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band">
+  <section class="band" id="start">
     <div class="wrap ruled">
       <div class="band-head">
         <h2>Start here</h2>
@@ -253,21 +70,21 @@ footer a{color:var(--graphite-soft)}
         <li>
           <span class="path-num">1</span>
           <div>
-            <h3><a href="/start/diagnose">Find out what's actually costing you points</a></h3>
+            <h3><a href="/soon.html">Find out what's actually costing you points</a></h3>
             <p>Most students study the wrong things. Before anything else, build an error log that tells you where your points are going.</p>
           </div>
         </li>
         <li>
           <span class="path-num">2</span>
           <div>
-            <h3><a href="/start/method">Learn the reasoning, not the formulas</a></h3>
+            <h3><a href="/soon.html">Learn the reasoning, not the formulas</a></h3>
             <p>Every question type on this test has a repeatable way to think about it. Memorizing content is the slow path.</p>
           </div>
         </li>
         <li>
           <span class="path-num">3</span>
           <div>
-            <h3><a href="/start/schedule">Build a study week you'll actually keep</a></h3>
+            <h3><a href="/soon.html">Build a study week you'll actually keep</a></h3>
             <p>Four focused hours beat fifteen distracted ones. Here's the schedule I ran, and why the rest days matter.</p>
           </div>
         </li>
@@ -275,7 +92,7 @@ footer a{color:var(--graphite-soft)}
     </div>
   </section>
 
-  <section class="band">
+  <section class="band" id="latest">
     <div class="wrap ruled">
       <div class="band-head">
         <h2>Latest</h2>
@@ -284,28 +101,28 @@ footer a{color:var(--graphite-soft)}
         <li>
           <span class="post-meta">Reading</span>
           <div>
-            <a class="post-title" href="#">The four-step method for Central Ideas questions</a>
+            <a class="post-title" href="/soon.html">The four-step method for Central Ideas questions</a>
             <p class="post-dek">Predict the answer before you look at the choices. It sounds slower. It isn't.</p>
           </div>
         </li>
         <li>
           <span class="post-meta">Math</span>
           <div>
-            <a class="post-title" href="#">Why I stopped memorizing formulas in month two</a>
+            <a class="post-title" href="/soon.html">Why I stopped memorizing formulas in month two</a>
             <p class="post-dek">The reference sheet is right there. What it can't give you is a way to recognize the question.</p>
           </div>
         </li>
         <li>
           <span class="post-meta">Mindset</span>
           <div>
-            <a class="post-title" href="#">What to do when you blank on test day</a>
+            <a class="post-title" href="/soon.html">What to do when you blank on test day</a>
             <p class="post-dek">I had a full panic on my first practice test. Here's the reset that got me through the real one.</p>
           </div>
         </li>
         <li>
           <span class="post-meta">Reading</span>
           <div>
-            <a class="post-title" href="#">Command of Evidence: turn every claim into one short sentence</a>
+            <a class="post-title" href="/soon.html">Command of Evidence: turn every claim into one short sentence</a>
             <p class="post-dek">If you can't state the claim in eight words, you're not ready to look at the answer choices.</p>
           </div>
         </li>
@@ -313,7 +130,7 @@ footer a{color:var(--graphite-soft)}
     </div>
   </section>
 
-  <section class="about">
+  <section class="about" id="about">
     <div class="wrap">
       <div>
         <div class="score">1600</div>
@@ -323,18 +140,18 @@ footer a{color:var(--graphite-soft)}
         <h2>Who's writing this</h2>
         <p>I scored a 1600. I'm telling you that once, here, because it's the only reason you'd trust the rest — and then I'd like to never mention it again.</p>
         <p>The score isn't the useful part. The useful part is that I kept notes on every question I got wrong for months, and eventually the patterns became obvious. This site is those notes, cleaned up, with the reasoning written out in full.</p>
-        <p><a href="/about">More about me and how I studied →</a></p>
+        <p><a href="/soon.html">More about me and how I studied</a></p>
       </div>
     </div>
   </section>
 
-  <section class="signup">
+  <section class="signup" id="subscribe">
     <div class="wrap ruled">
       <div class="signup-inner">
         <h2>One method a week</h2>
         <p>A new breakdown every Sunday, plus a practice set to go with it. No spam, no upsells.</p>
         <form class="form" id="signup-form">
-          <label for="email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
           <input id="email" type="email" placeholder="you@school.edu" required>
           <button type="submit">Subscribe</button>
         </form>
