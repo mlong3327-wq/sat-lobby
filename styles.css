@@ -183,3 +183,42 @@ p{margin:0 0 1.1em}
 footer{border-top:1px solid var(--rule);padding:30px 0 46px;font-size:.86rem;color:var(--graphite-soft)}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--graphite-soft)}
+
+/* ---------- posts ---------- */
+.post-head{padding:72px 0 40px}
+.post-head-inner{padding-left:26px;max-width:var(--read)}
+.post-kicker{font-size:.8rem;font-weight:700;color:var(--graphite-soft);margin-bottom:16px}
+.post-head h1{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:16px}
+.post-head .dek{font-size:1.14rem;color:var(--graphite-soft);margin:0 0 14px}
+.post-readtime{font-size:.84rem;color:var(--graphite-soft)}
+
+.prose{padding:0 0 56px 26px;max-width:var(--read)}
+.prose h2{font-size:clamp(1.4rem,2.6vw,1.8rem);margin:2.2em 0 .6em}
+.prose h3{margin:1.8em 0 .5em}
+.prose p,.prose li{font-size:1.04rem}
+.prose ul,.prose ol{padding-left:1.2em;margin:0 0 1.2em}
+.prose li{margin-bottom:.45em}
+.prose li::marker{color:var(--pencil);font-weight:700}
+.prose blockquote{margin:1.4em 0;padding:12px 18px;background:#fff;border:1px solid var(--rule);font-size:1rem}
+.prose blockquote p{margin:0}
+.prose .q{margin:2.2em 0}
+.callout{border-left:3px solid var(--pencil);padding:4px 0 4px 18px;margin:1.6em 0;font-family:var(--display);font-size:1.25rem;line-height:1.4;color:var(--graphite)}
+
+.q-passage{font-size:.98rem;line-height:1.6;margin-bottom:16px;padding:14px 16px;background:var(--paper);border-left:2px solid var(--rule)}
+.q-passage.poem{white-space:pre-line;font-style:italic}
+.q-table-wrap{overflow-x:auto;margin-bottom:16px}
+.q-table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:360px}
+.q-table caption{text-align:left;font-weight:700;font-size:.86rem;margin-bottom:8px}
+.q-table th,.q-table td{border:1px solid var(--rule);padding:8px 12px;text-align:left}
+.q-table th{background:var(--paper);font-weight:600}
+.q-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+.post-next{border-top:1px solid var(--rule);padding:36px 0 64px}
+.post-next-inner{padding-left:26px;max-width:var(--read)}
+.post-next-label{font-size:.8rem;font-weight:700;color:var(--graphite-soft);margin:0 0 6px}
+.post-next a{font-family:var(--display);font-size:1.4rem;font-weight:600;text-decoration:none;color:var(--graphite)}
+.post-next a:hover{color:var(--ink)}
+@media (max-width:860px){
+  .post-head{padding:48px 0 28px}
+  .post-head-inner,.prose,.post-next-inner{padding-left:0}
+}
